@@ -42,6 +42,26 @@ export const getTask = async(req,res)=>{
     }
 }
 
+export const getAllTask = async(req,res)=>{
+    try {
+        const task = await TASK.find({})
+        if(!task) return res.status.json({
+            success:false,
+            message:"task not found"
+        })
+
+        res.status(200).json({
+            success:true,
+            task
+        })
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message
+        })  
+    }
+}
+
 //update task
 export const updateTask= async(req,res)=>{
     try {
